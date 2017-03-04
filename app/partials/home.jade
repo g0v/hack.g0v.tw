@@ -33,7 +33,7 @@
       p 希望 g0v 社群能量持續嗎？你可以報名參加黑客松貢獻一己之力，或捐款贊助每兩個月一次的百人大松 :)
 
     section.main-content.text-center
-       a.btn.btn-warning.btn-large(href="http://g0v-jothon.kktix.cc/events/g0v-hackath23n") 報名 3/4 黑客松 (2017/2/20 正午開放)
+       a#kktixbtn.btn.btn-warning.btn-large(href="http://g0v.tw") 報名 x/x 黑客松 (xxxx/xx/xx 正午開放)
        p
        a.btn.btn-success.btn-large(href="https://ocf.neticrm.tw/civicrm/contribute/transact?reset=1&id=23") 單筆贊助黑客松香油票
        a.btn.btn-info.btn-large(href="https://ocf.neticrm.tw/civicrm/contribute/transact?reset=1&id=18") 成為定期定額捐款人
@@ -72,3 +72,41 @@
 
 
       //iframe(class="kktix",src="https://kktix.com/tickets_widget?slug=g0v-dathon",frameborder="0",height="420",width="100%",vspace="0",hspace="0",marginheight="5",marginwidth="5",scrolling="auto",allowtransparency="true")
+
+    script.
+      $.get( "http://g0v-jothon.kktix.cc/events.atom?locale=zh-TW", function( data ) {
+        var all_events = $(data).find('published');
+        var this_e = $(all_events[0]).text();
+
+        var all_links = $(data).find('link');
+        var this_link = $(all_links[2]).attr('href');
+
+        $('#kktixbtn').attr('href', this_link);
+
+        var dat = new Date();
+        var o_date = new Date(this_e);
+        
+        $('#kktixbtn').text('報名 ' + event_formatDate(o_date) + ' 黑客松 (' + formatDate(dat.addDays(12, dateString2Date(this_e))) + ' 正午開放)');
+
+      });
+
+        Date.prototype.addDays = function(days, init) {
+            var dat = new Date(this.valueOf());
+            dat.setDate(dat.getDate(init) - days);
+            return dat;
+        }
+
+      function dateString2Date(dateString) {
+        var dt  = dateString.split(/\-|\s/);
+        return new Date(dt.slice(0,3).reverse().join('-') + ' ' + dt[3]);
+      }
+
+      function formatDate(date) {
+        var m = date.getMonth()+1;
+        return date.getFullYear() + "/" + m + "/" + date.getDate();
+      }
+
+      function event_formatDate(date) {
+        var m = date.getMonth()+1;
+        return m + "/" + date.getDate();
+      }
