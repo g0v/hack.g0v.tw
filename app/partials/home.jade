@@ -74,7 +74,7 @@
       //iframe(class="kktix",src="https://kktix.com/tickets_widget?slug=g0v-dathon",frameborder="0",height="420",width="100%",vspace="0",hspace="0",marginheight="5",marginwidth="5",scrolling="auto",allowtransparency="true")
 
     script.
-      $.get( "http://g0v-jothon.kktix.cc/events.atom?locale=zh-TW", function( data ) {
+      $.get( "https://g0v-jothon.kktix.cc/events.atom?locale=zh-TW", function( data ) {
         var all_events = $(data).find('published');
         var this_e = $(all_events[0]).text();
 
@@ -86,7 +86,7 @@
         var dat = new Date();
         var o_date = new Date(this_e);
         
-        $('#kktixbtn').text('報名 ' + event_formatDate(o_date) + ' 黑客松 (' + formatDate(dat.addDays(12, dateString2Date(this_e))) + ' 正午開放)');
+        $('#kktixbtn').text('報名 ' + event_formatDate(o_date) + ' 黑客松 (' + formatDate(o_date.addDays(12)) + ' 正午開放)');
 
       });
 
@@ -95,11 +95,6 @@
             dat.setDate(dat.getDate(init) - days);
             return dat;
         }
-
-      function dateString2Date(dateString) {
-        var dt  = dateString.split(/\-|\s/);
-        return new Date(dt.slice(0,3).reverse().join('-') + ' ' + dt[3]);
-      }
 
       function formatDate(date) {
         var m = date.getMonth()+1;
