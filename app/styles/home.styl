@@ -111,13 +111,27 @@
     padding-right: 0
     padding-left: 10px
 
+@media(max-width:768px)
+  .pair
+    display: block
+    .col
+      flex: none
+      width: 100%
+
 #kktixbtn
   font-size: 1.5em
   padding: 20px 30px
   font-weight: bold
   .en
     margin-bottom: 15px
+  .zh
+    line-height: 1.3em
 
 .main-content .btn
+  margin: 5px
   .en
     font-size: 0.8em
+@media(max-width:768px)
+  .home .main-content
+    margin-left: 5%
+    margin-right: 5%
