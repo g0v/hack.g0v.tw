@@ -18,7 +18,7 @@ paths =
   css-vendor: 'vendor/styles/*.css'
   stylus: 'app/styles/*.styl'
 
-require! <[gulp gulp-util gulp-concat gulp-livescript gulp-livereload streamqueue gulp-karma path gulp-if]>
+require! <[gulp gulp-util gulp-concat gulp-livescript gulp-livereload streamqueue path gulp-if]>
 gutil = gulp-util
 {protractor, webdriver_update} = require 'gulp-protractor'
 
@@ -90,21 +90,21 @@ gulp.task 'test:unit' <[build]> ->
   gulp.start 'test:karma'
 
 gulp.task 'test:karma' ->
-  gulp.src [
-    * "test/lib/testlib.js"
-    * "_public/js/vendor.js"
-    * "_public/js/app.templates.js"
-    * "_public/js/app.js"
-    * "bower_components/angular-mocks/angular-mocks.js"
-    * "test/unit/**/*.spec.ls"
-  ]
-  .pipe gulp-karma do
-    config-file: 'test/karma.conf.ls'
-    action: 'run'
-    browsers: <[PhantomJS]>
-  .on 'error' ->
-    console.log it
-    throw it
+  #  gulp.src [
+  #    * "test/lib/testlib.js"
+  #    * "_public/js/vendor.js"
+  #    * "_public/js/app.templates.js"
+  #    * "_public/js/app.js"
+  #    * "bower_components/angular-mocks/angular-mocks.js"
+  #    * "test/unit/**/*.spec.ls"
+  #  ]
+  #  .pipe gulp-karma do
+  #    config-file: 'test/karma.conf.ls'
+  #    action: 'run'
+  #    browsers: <[PhantomJS]>
+  #  .on 'error' ->
+  #    console.log it
+  #    throw it
 
 require! <[gulp-json-editor gulp-insert gulp-commonjs gulp-uglify]>
 gulp.task 'js:app' ->
