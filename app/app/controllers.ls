@@ -237,7 +237,7 @@ angular.module 'app.controllers' <[ui.state ngCookies]>
           return
         Tabletop.init { key: id, callback, -simpleSheet }
       else doit = ~>
-        csv <~ $http.get "https://www.ethercalc.org/_/#{id}/csv"
+        csv <~ $http.get "https://ethercalc.org/_/#{id}/csv"
         .error -> return if ++retry > 3; setTimeout doit, 1000ms
         .success
 
@@ -253,7 +253,7 @@ angular.module 'app.controllers' <[ui.state ngCookies]>
       cb docs
 
     load-remote-csv: (id, cb) ->
-      csv <~ $http.get "https://www.ethercalc.org/_/#{id}/csv"
+      csv <~ $http.get "https://ethercalc.org/_/#{id}/csv"
       .success
       docs = []
       tree = []
